@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: windocks-sql-proxy-secure 
+  labels:
+    app: sqlproxy-secure 
+spec:
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: sqlproxy-secure 
+        tier: frontend
+    spec:
+      containers:
+      - name: sqlproxy-secure-app 
+        image: windocks/windocks-sql-server-proxy 
+        imagePullPolicy: Always
+        ports:
+        - name: tcp-proxy
+          containerPort: 3087
+        - name: tls-proxy
+          containerPort: 3088
+        envFrom:
+          - secretRef:
+              name: proxy-secrets
+        env:
+          - name: PROJECT_ID
+            value: mystical-timing-242516
+          - name: WINDOCKS_REQUIRED_HOSTNAME
+            value: 54.203.170.176
+          - name: WINDOCKS_REQUIRED_IMAGE_NAME
+            value: clone
+          - name: WINDOCKS_SQL_PROXY_OPTIONAL_LISTENING_PORT
+            value: "3087"

@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: windocks-sql-proxy-secure
+  labels:
+    app: sqlproxy-secure
+    tier: frontend
+spec:
+  sessionAffinity: ClientIP
+  type: LoadBalancer
+  ports:
+  - port: 3087
+    name: tcp-proxy-secure-service
+    targetPort: 3087
+  - port: 3088
+    name: tls-proxy-secure-service
+    targetPort: 3088
+  selector:
+    app: sqlproxy-secure
+    tier: frontend
