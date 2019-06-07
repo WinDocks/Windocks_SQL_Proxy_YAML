@@ -26,7 +26,7 @@ spec:
               name: proxy-secrets
         env:
           - name: PROJECT_ID
-            value: mystical-timing-242516
+            value: natural-oath-243021
           - name: WINDOCKS_REQUIRED_HOSTNAME
             value: 54.203.170.176
           - name: WINDOCKS_REQUIRED_IMAGE_NAME
